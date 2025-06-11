@@ -113,6 +113,23 @@ class LandingPageApp extends Application {
 }
 
 Hooks.once('ready', () => {
+  // Show a welcome dialog greeting the user by their character name
+  const actor = game.user.character;
+  const name = actor ? actor.name : 'Abenteurer';
+  let content = `<p>Hallo ${name}</p>`;
+  if (actor && actor.img) {
+    content += `<img src="${actor.img}" style="width:100%;height:auto;"/>`;
+  }
+  new Dialog({
+    title: 'Willkommen',
+    content,
+    buttons: {
+      ok: {
+        label: 'OK'
+      }
+    }
+  }).render(true);
+
   new LandingPageApp().render(true);
 });
 
