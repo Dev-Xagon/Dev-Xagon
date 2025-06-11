@@ -3,7 +3,7 @@ class LandingPageApp extends Application {
     const merge = foundry.utils.mergeObject;
     return merge(super.defaultOptions, {
       id: "landing-page-app",
-      template: "modules/landing-page/templates/landing-page.html",
+      template: "modules/my-landing-page/templates/landing-page.html",
       title: "Landing Page",
       width: 600,
       height: "auto"
@@ -39,14 +39,14 @@ class LandingPageApp extends Application {
    * Retrieve the current page index from the user's flags.
    */
   get pageIndex() {
-    return game.user.getFlag("landing-page", "pageIndex") || 0;
+    return game.user.getFlag("my-landing-page", "pageIndex") || 0;
   }
 
   /**
    * Store the current page index for this user.
    */
   async setPageIndex(index) {
-    await game.user.setFlag("landing-page", "pageIndex", index);
+    await game.user.setFlag("my-landing-page", "pageIndex", index);
     this.render(true);
   }
 

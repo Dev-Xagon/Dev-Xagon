@@ -1,6 +1,6 @@
 {
-  "name": "landing-page",
-  "title": "Landing Page Module",
+  "name": "my-landing-page",
+  "title": "My Landing Page Module",
   "description": "A module that displays a landing page with individual pages per player.",
   "author": "Dev-Xagon",
   "version": "0.3.0",
@@ -15,6 +15,6 @@
   "languages": [],
   "dependencies": [],
   "socket": false,
-  "manifest": "https://example.com/landing-page/module.json",
-  "download": "https://example.com/landing-page/module.zip"
+  "manifest": "https://example.com/my-landing-page/module.json",
+  "download": "https://example.com/my-landing-page/module.zip"
 }

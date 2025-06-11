@@ -1,4 +1,4 @@
-# Landing Page Module
+# My Landing Page Module
 
 This Foundry VTT module displays a landing page with multiple pages. Each user can navigate between pages independently. The module tracks the page index using user flags so that players see only the page they have selected. The module is compatible with Foundry VTT **v13**.
 
@@ -6,7 +6,7 @@ The landing page includes additional pages for quick access to your Character Sh
 
 ## Installation
 
-1. Copy the `landing-page` folder into your Foundry VTT `modules` directory.
+1. Copy the `my-landing-page` folder into your Foundry VTT `modules` directory.
 2. Restart Foundry VTT and enable the module in Game Settings.
 
 ## Usage
