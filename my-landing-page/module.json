@@ -1,5 +1,5 @@
 {
-  "name": "my-landing-page",
+  "id": "my-landing-page",
   "title": "My Landing Page Module",
   "description": "A module that displays a landing page with individual pages per player.",
   "author": "Dev-Xagon",

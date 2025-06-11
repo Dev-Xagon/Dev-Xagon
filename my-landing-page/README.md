@@ -13,6 +13,8 @@ The landing page includes additional pages for quick access to your Character Sh
 
 Upon loading into a world, the landing page will appear automatically. Use the **Next** and **Previous** buttons to switch pages. The page you select is stored individually and will not affect what other players see.
 
+When the game starts you will also see a small welcome dialog that greets you by your character's name and shows their artwork.
+
 From the Character Sheet and Inventory pages you can open your actor's sheet directly. The "Notizen an den DM" page lets you send a whispered chat message to all GMs.
 
 The module includes a small CSS file that applies standard Foundry styling to the landing page window.
