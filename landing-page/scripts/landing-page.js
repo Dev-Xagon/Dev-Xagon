@@ -1,6 +1,7 @@
 class LandingPageApp extends Application {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    const merge = foundry.utils.mergeObject;
+    return merge(super.defaultOptions, {
       id: "landing-page-app",
       template: "modules/landing-page/templates/landing-page.html",
       title: "Landing Page",
@@ -90,7 +91,9 @@ class LandingPageApp extends Application {
       }
       const sheet = actor.sheet;
       sheet.render(true);
-      if (sheet._tabs) {
+      if (typeof sheet.activateTab === "function") {
+        sheet.activateTab("inventory");
+      } else if (sheet._tabs?.[0]) {
         sheet._tabs[0].activate("inventory");
       }
     });
