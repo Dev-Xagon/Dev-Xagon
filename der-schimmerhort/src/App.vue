@@ -25,8 +25,4 @@ export default {
 }
 </script>
 
-<style>
-nav button {
-  margin-right: 10px;
-}
-</style>
+<!-- global styles imported in main.js -->

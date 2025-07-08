@@ -1,0 +1,45 @@
+:root {
+  --primary-red: #8b0000;
+  --gold: #ffd700;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffafa;
+  color: #333;
+}
+
+h1, h2 {
+  color: var(--primary-red);
+}
+
+button {
+  background-color: var(--primary-red);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 4px 8px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a30000;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav button {
+  margin-right: 10px;
+}
+
+input {
+  margin: 2px;
+  padding: 4px;
+  border: 1px solid var(--primary-red);
+}
+
+li {
+  margin: 4px 0;
+}
