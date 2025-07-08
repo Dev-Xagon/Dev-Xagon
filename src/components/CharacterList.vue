@@ -1,5 +1,10 @@
 <template>
   <div>
+    <form @submit.prevent="addCharacter">
+      <input v-model="newCharacter" placeholder="Add character" />
+      <button type="submit">Add</button>
+    </form>
+
     <ul>
       <li v-for="(character, index) in characters" :key="index">
         {{ character.name || character }}
@@ -14,13 +19,27 @@ export default {
   name: 'CharacterList',
   data() {
     return {
-      characters: JSON.parse(localStorage.getItem('characters') || '[]')
+      characters: JSON.parse(localStorage.getItem('characters') || '[]'),
+      newCharacter: ''
     };
   },
   methods: {
+    addCharacter() {
+      const name = this.newCharacter.trim();
+      if (name) {
+        this.characters.push(name);
+        localStorage.setItem('characters', JSON.stringify(this.characters));
+        this.newCharacter = '';
+      }
+    },
     removeCharacter(index) {
-      this.characters.splice(index, 1);
-      localStorage.setItem('characters', JSON.stringify(this.characters));
+      const character = this.characters[index];
+      const name = character.name || character;
+      const confirmation = prompt('Enter the name to delete:');
+      if (confirmation === name) {
+        this.characters.splice(index, 1);
+        localStorage.setItem('characters', JSON.stringify(this.characters));
+      }
     }
   }
 };
