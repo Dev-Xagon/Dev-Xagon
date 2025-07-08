@@ -1,0 +1,20 @@
+{
+  "id": "my-landing-page",
+  "title": "My Landing Page Module",
+  "description": "A module that displays a landing page with individual pages per player.",
+  "author": "Dev-Xagon",
+  "version": "0.3.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "scripts": ["scripts/landing-page.js"],
+  "esmodules": [],
+  "styles": ["styles/landing-page.css"],
+  "packs": [],
+  "languages": [],
+  "dependencies": [],
+  "socket": false,
+  "manifest": "https://example.com/my-landing-page/module.json",
+  "download": "https://example.com/my-landing-page/module.zip"
+}
