@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Game Manager</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    section { margin-bottom: 30px; }
+    input { margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Players</h1>
+    <section>
+      <input v-model="newPlayer" placeholder="Player name">
+      <button @click="addPlayer">Add</button>
+      <ul>
+        <li v-for="p in players" :key="p.id">
+          {{p.name}}
+          <button @click="deletePlayer(p.id)">Delete</button>
+        </li>
+      </ul>
+    </section>
+
+    <h1>Characters</h1>
+    <section>
+      <input v-model="newCharacter" placeholder="Character name">
+      <select v-model.number="characterPlayer">
+        <option :value="null">No player</option>
+        <option v-for="p in players" :key="p.id" :value="p.id">{{p.name}}</option>
+      </select>
+      <button @click="addCharacter">Add</button>
+      <ul>
+        <li v-for="c in characters" :key="c.id">
+          {{c.name}} (Player: {{c.player_id}})
+          <button @click="deleteCharacter(c.id)">Delete</button>
+        </li>
+      </ul>
+    </section>
+
+    <h1>Wishlist</h1>
+    <section>
+      <input v-model="newItem" placeholder="Item">
+      <select v-model.number="itemPlayer">
+        <option :value="null">No player</option>
+        <option v-for="p in players" :key="p.id" :value="p.id">{{p.name}}</option>
+      </select>
+      <button @click="addItem">Add</button>
+      <ul>
+        <li v-for="w in wishlist" :key="w.id">
+          {{w.item}} (Player: {{w.player_id}})
+          <button @click="deleteItem(w.id)">Delete</button>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          players: [],
+          characters: [],
+          wishlist: [],
+          newPlayer: '',
+          newCharacter: '',
+          characterPlayer: null,
+          newItem: '',
+          itemPlayer: null
+        };
+      },
+      mounted() {
+        this.fetchAll();
+      },
+      methods: {
+        async fetchAll() {
+          await Promise.all([this.fetchPlayers(), this.fetchCharacters(), this.fetchWishlist()]);
+        },
+        async fetchPlayers() {
+          const res = await fetch('/players');
+          this.players = await res.json();
+        },
+        async addPlayer() {
+          if(!this.newPlayer) return;
+          await fetch('/players', {method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({name: this.newPlayer})});
+          this.newPlayer='';
+          this.fetchPlayers();
+        },
+        async deletePlayer(id) {
+          await fetch(`/players/${id}`, {method:'DELETE'});
+          this.fetchPlayers();
+        },
+        async fetchCharacters() {
+          const res = await fetch('/characters');
+          this.characters = await res.json();
+        },
+        async addCharacter() {
+          if(!this.newCharacter) return;
+          await fetch('/characters', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name:this.newCharacter, player_id:this.characterPlayer})});
+          this.newCharacter='';
+          this.characterPlayer=null;
+          this.fetchCharacters();
+        },
+        async deleteCharacter(id) {
+          await fetch(`/characters/${id}`, {method:'DELETE'});
+          this.fetchCharacters();
+        },
+        async fetchWishlist() {
+          const res = await fetch('/wishlist');
+          this.wishlist = await res.json();
+        },
+        async addItem() {
+          if(!this.newItem) return;
+          await fetch('/wishlist', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({item:this.newItem, player_id:this.itemPlayer})});
+          this.newItem='';
+          this.itemPlayer=null;
+          this.fetchWishlist();
+        },
+        async deleteItem(id) {
+          await fetch(`/wishlist/${id}`, {method:'DELETE'});
+          this.fetchWishlist();
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
