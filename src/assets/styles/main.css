@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-base-100 text-base-content min-h-screen;
+  }
+
+  h1, h2, h3 {
+    @apply font-medieval;
+  }
+}
+
+@layer components {
+  .card-fantasy {
+    @apply card bg-base-200 shadow-xl border border-parchment-800/20 hover:border-primary/40 transition-all duration-300;
+  }
+
+  .btn-fantasy {
+    @apply btn btn-primary font-medieval text-lg;
+  }
+
+  .input-fantasy {
+    @apply input input-bordered bg-base-200 border-parchment-800/30 focus:border-primary;
+  }
+
+  .page-title {
+    @apply text-3xl md:text-4xl font-medieval text-primary mb-6;
+  }
+}
